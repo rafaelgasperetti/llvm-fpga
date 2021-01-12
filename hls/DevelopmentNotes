@@ -1,0 +1,89 @@
+Pending 24/05/2017:
+	-Visit declaration reference from assign of arrays instead of return "Continue" at binary operator;
+		-When a declaration is from an array and uses static inicialization. Dotprod doesn't use it, but another sample may use;
+	-Finish to implement the components connections from #defined constants. The CLang tree does not goes throught this kind of declarations, so it has to be manuallly validated;
+	-Finish to implement the VHDL generation. It's yet necessary to put all the components toghether throught the connections;
+Pending 18/05/2017:
+	-Visit declaration reference from assign of arrays instead of return "Continue" at binary operator;
+		-When a declaration is from an array and uses static inicialization. Dotprod doesn't use it, but another sample may use;
+	-Finish to implement the VHDL generation. It's yet necessary to put all the components toghether throught the connections;
+Pending 09/05/2017:
+	-Visit declaration reference from assign of arrays instead of return "Continue" at binary operator;
+		-When a declaration is from an array and uses static inicialization. Dotprod doesn't use it, but another sample may use;
+	-Finish to implement the VHDL generation. It's yet necessary to put all the components toghether throught the connections;
+	-Implement the connection on the 'for' command from the boolean condition output result to the counter correct input value;
+		-It will require to validade if the binary operator the 'for condition', to connect the 'n' comparison value to the counter termination port insead of creating the comparator component;
+			-Beware the dependencies of this actions (the signals that connects the comparator port inputs);
+Pending 08/05/2017:
+	-Visit declaration reference from assign of arrays instead of return "Continue" at binary operator;
+		-When a declaration is from an array and uses static inicialization. Dotprod doesn't use it, but another sample may use;
+	-Finish to implement the VHDL generation. It's yet necessary to put all the components toghether throught the connections;
+Pending 03/05/2017:
+	-Visit declaration reference from assign of arrays instead of return "Continue" at binary operator;
+		-When a declaration is from an array and uses static inicialization. Dotprod doesn't use it, but another sample may use;
+	-Start to implement the VHDL generation, because the Dotprod design is complete;
+Pending 02/05/2017:
+	-Visit declaration reference from assign of arrays instead of return "Continue" at binary operator;
+		-When a declaration is from an array and uses static inicialization. Dotprod doesn't use it, but another sample may use;
+	-Implement the connection from a a binary operator output to a compound assign operator input;
+Pending 27/04/2017:
+	-Visit declaration reference from assign of arrays instead of return "Continue" at binary operator;
+		-When a declaration is from an array and uses static inicialization. Dotprod doesn't use it, but another sample may use;
+	-Finish de 'VisitDeclarationReference' to accept arrays when the GrandParent = FirstExpression, because the way it's now, the address of the array must connect to the '[int]' of the operand;
+Pending 26/04/2017:
+	-Visit declaration reference from assign of arrays instead of return "Continue" at binary operator;
+		-When a declaration is from an array and uses static inicialization. Dotprod doesn't use it, but another sample may use;
+	-Finish de 'VisitFirstExpression' to accept arrays when the parentKind = BinaryOperator, because the way it's now, the address of the array must connect to the '[int]' of the operand;
+	-Use the 'CursorHistory' implementation on NodeVisitor to be able to identify the context and finish the code;
+Pending 25/04/2017:
+	-Visit declaration reference from assign of arrays instead of return "Continue" at binary operator;
+	-Implement de 'VisitFirstExpression' to accept arrays when the parentKind = BinaryOperator, because the way it's now, the connections are not correct;
+	-Use the 'CursorHistory' implementation on NodeVisitor to be able to identify the context and finish the code.
+Pending 24/04/2017:
+	-Visit declaration reference from assign of arrays instead of return "Continue" at binary operator;
+	-Implement de 'VisitFirstExpression' to accept arrays when the parentKind = BinaryOperator, because the way it's now, the connections are not correct;
+	-Finish the 'CursorHistory' implementation for the NodeVisitor to understand it and to be able to identify the context.
+Pending 19/04/2017:
+	-Visit declaration reference from assign of arrays instead of return "Continue" at binary operator;
+	-Implement de 'VisitFirstExpression' to accept arrays when the parentKind = BinaryOperator, because the way it's now, the connections are not correct;
+	-Implement a tree management instead of stack management. The tree node must contain the cursor and parent cursor, as well as allow the full navigation foward and backward;
+		-Create the 'CursorTree' class that contains all 'CursorNode';
+		-Remove all the stack management from the Visitor. The tree management must be a separated class.
+Pending 18/04/2017:
+	-Visit declaration reference from assign of arrays instead of return "Continue" at binary operator;
+	-Implement de 'VistitFirstExpression' to accept arrays when the parentKind = BinaryOperator, because the way it's now, the connections are not correct;
+	-Finish de method stack implementation to be able to implement the previous item (analize the better option: vector of string or of CXCursor);
+Pending 17/04/2017:
+	-Visit declaration reference from assign of arrays instead of return "Continue" at binary operator;
+	-Implement de 'VistitFirstExpression' to accept arrays when the parentKind = BinaryOperator, because the way it's now, the connections are not correct;
+Pending 15/04/2017:
+	-Visit declaration reference from assign of arrays instead of return "Continue" at binary operator;
+	-Finish the 'VisitCompoundAssignOperation' implementation;
+	-Adjust de 'counter' start value when the assign value for a variable is related to a counter component;
+Pending 13/04/2017:
+	-Visit declaration reference from assign of arrays instead of return "Continue" at binary operator;
+	-Finish the 'VisitCompoundAssignOperation' implementation;
+Pending 11/04/2017:
+	-Visit declaration reference from assign of arrays instead of return "Continue" at binary operator;
+	-Finish the conversion from Cmp_Reg_Op to Cmp_Counter;
+	-Implement the 'VisitCompoundAssignOperation';
+Pending 10/04/2017:
+	-Visit declaration reference from assign of arrays instead of return "Continue" at binary operator;
+	-Finish the conversion from Cmp_Reg_Op to Cmp_Counter;
+	-Convert the 'vector<ComponentIdentifier> Components' to vector pointer, because it isn't storaging information through methods;
+Pending 07/04/2017:
+	-Visit declaration reference from assign of arrays instead of return "Continue" at binary operator;
+	-Finish the conversion from Cmp_Reg_Op to Cmp_Counter;
+	-Finish the context implementation (necessary to identify the related cursor of the operations, so it can be related to the respective components');
+		-End the implementation of when it's added and when it's removed;
+Pending 30/03/2017:
+	-Visit declaration reference from assign of arrays instead of return "Continue" at binary operator;
+	-Finish the conversion from Cmp_Reg_Op to Cmp_Counter;
+	-Finish the context implementation;
+		-Implement the Context class, that contains the context name, cursor, depth, it's compound statement (bool) adding it to the context control,
+		the parent context and the contexts right below it;
+Pending 28/03/2017:
+	-Visit declaration reference from assign of arrays instead of return "Continue" at binary operator;
+	-Fix the "Unexpected Binary Operation" quen the code isn't yet finished - OK;
+	-Finish the context implementation;
+	-Finish the conversion from Cmp_Reg_Op to Cmp_Counter;

@@ -1,0 +1,41 @@
+#include<iostream>
+#include<string>
+#include<vector>
+
+#include<Core/Component.hpp>
+#include<Compiler/DependencyLevel.hpp>
+
+extern "C" {
+	#include<clang-c/Index.h>
+}
+
+using namespace std;
+class Operation
+{
+    private:
+        string Name;
+        Component* RelatedComponent;
+        vector<pair<Component*, int>*>* Dependencies = new vector<pair<Component*, int>*>();//The component dependency and the Dependencies address case it's a subdependency of another dependency, like the 'i' of a[i], for example. -1 if is not.
+        CXCursor RelatedCursor;
+        DependencyLevel* Level;
+
+    public:
+        Operation(string, Component*, CXCursor);
+        void SetName(string);
+        string GetName();
+        void SetRelatedComponent(Component*);
+        Component* GetRelatedComponent();
+        void AddDependency(Component*, int);
+        Component* GetDependency(string);
+        Component* GetDependency(string, int);
+        pair<Component*, int>* GetFullDependency(string);
+        pair<Component*, int>* GetFullDependency(string, int);
+        int GetDependencyAddress(string, int);
+        vector<pair<Component*, int>*>* GetDependencies();
+        void SetRelatedCursor(CXCursor);
+        CXCursor GetRelatedCursor();
+        void SetDependencyLevel(DependencyLevel*);
+        DependencyLevel* GetDependencyLevel();
+
+        static void ChangeDependency(vector<Operation*>*, string, Component*);
+};

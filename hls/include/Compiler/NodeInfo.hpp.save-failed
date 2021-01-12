@@ -1,0 +1,78 @@
+#include<iostream>
+#include<string>
+#include<vector>
+
+#include<Core/Design.hpp>
+#include<Core/Component.hpp>
+#include<Core/Signal.hpp>
+
+extern "C" {
+	#include<clang-c/Index.h>
+}
+
+using namespace std;
+
+class NodeInfo
+{
+    private:
+        CXCursor Cursor;
+        CXCursor ParentCursor;
+        vector<NodeInfo*>* CursorHistory = new vector<NodeInfo*>;
+        int* ClientData;
+
+    public:
+        NodeInfo(CXCursor, CXCursor, CXClientData);
+        void SetCursor(CXCursor);
+        CXCursor GetCursor();
+        void SetParentCursor(CXCursor);
+        CXCursor GetParentCursor();
+        CXCursorKind GetCursorKind();
+        CXType GetCursorType();
+        CXTypeKind GetCursorTypeKind();
+        CXCursorKind GetParentCursorKind();
+        CXType GetParentCursorType();
+        CXTypeKind GetParentCursorTypeKind();
+        string GetName();
+        string GetParentName();
+        CXSourceLocation GetCursorLocation();
+        CXSourceLocation GetParentCursorLocation();
+        void SetClientData(CXClientData);
+        int* GetClientData();
+        int* GetNextClientData();
+        bool IsFromMainFile();
+        bool IsParentFromMainFile();
+        unsigned GetCursorHash();
+        unsigned GetParentCursorHash();
+        void SetCursorHistory(vector<NodeInfo*>*);
+        vector<NodeInfo*>* GetCursorHistory();
+        NodeInfo* GetCursorHistory(int);//Positive numbers counts from 0 to the number. Negative numbers counts from the last element decreasing the number to the quantity.
+        int GetCursorDepth();
+        int GetParentCursorDepth();
+        vector<string> GetCursorTokens();
+        vector<string> GetParentCursorTokens();
+
+        static void Push(vector<NodeInfo*>*, NodeInfo*);
+        static NodeInfo* GetLast(vector<NodeInfo*>*);
+        static NodeInfo* Pop(vector<NodeInfo*>*);
+        static NodeInfo* Remove(vector<NodeInfo*>*, int);
+        static NodeInfo* Get(vector<NodeInfo*>*, int);
+        static int Get(vector<NodeInfo*>*, CXCursor);
+        static vector<NodeInfo*>* GetPreviousHistory(vector<NodeInfo*>*, CXCursor);
+
+        static void PrintTokenInfo(CXTranslationUnit, CXToken);
+        static void PrintCursorTokens(CXTranslationUnit, CXCursor);
+        static string GetTokenName(CXTranslationUnit, CXToken);
+        static string GetTokenFromCursor(CXTranslationUnit, CXCursor, int);
+        static vector<CXToken> GetTokensFromCursor(CXTranslationUnit, CXCursor);
+        static bool IsArray(CXType);
+        static void PrintHistory(vector<NodeInfo*>*, CXTranslationUnit);
+        static void PrintCursorInfo(string, NodeInfo* info);
+        static void PrintHistoryNames(vector<NodeInfo*>*);
+
+        static const int History_1_Level_Above = 0;
+        static const int History_2_Levels_Above = 1;
+        static const int History_3_Levels_Above = 2;
+        static const int History_First_Level = -1;
+        static const int History_Second_Level = -2;
+        static const int History_Third_Level = -3;
+};
